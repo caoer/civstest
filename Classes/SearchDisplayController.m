@@ -8,6 +8,8 @@
 #import "SearchDisplayController.h"
 #import "NSIndexPath+UtilityExtensions.h"
 
+#define kNameKey @"name"
+#define kIndexKey @"index"
 @implementation SearchDisplayController
 
 @synthesize searchResultArray = searchResultArray_;
@@ -34,6 +36,18 @@
 -(BOOL) searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
 	[searchResultArray_ release];
 	searchResultArray_ = nil;
+    searchResultArray_ = [[NSMutableArray array] retain];
+    for (int i = 0; i < [[[AddressBookDataSource sharedInstance] nameDataSource] count]; i ++) {
+        NSString *name = [[AddressBookDataSource sharedInstance] nameAtIndex:i];
+        if ([name rangeOfString:searchString options:NSCaseInsensitiveSearch].location != NSNotFound
+            ) {
+            [searchResultArray_ addObject:
+             [NSDictionary dictionaryWithObjectsAndKeys:
+              name, kNameKey, 
+              [NSNumber numberWithInt:i], kIndexKey,
+              nil]];
+        }
+    }
 	return YES;
 }
 -(void) searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)aTableView {
@@ -61,7 +75,8 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 304, 44) reuseIdentifier:cellIdentifier] autorelease];     
     }
 	
-    [[cell textLabel] setText:@""];
+    NSDictionary *dic = [searchResultArray_ objectAtIndex:indexPath.row];
+    [[cell textLabel] setText:[dic valueForKey:kNameKey]];
 	[cell setAccessoryType:UITableViewCellAccessoryNone];
 	
 	

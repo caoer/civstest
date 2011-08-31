@@ -44,6 +44,7 @@
 		0944E6BF1406400900544509 /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0944E6BE1406400900544509 /* SearchDisplayController.m */; };
 		0944E6D8140641C100544509 /* AddressSelectNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0944E6D7140641C100544509 /* AddressSelectNavigationController.m */; };
 		0944E8DC1406F0F000544509 /* AddressBookUICell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0944E8DB1406F0F000544509 /* AddressBookUICell.m */; };
+		09817AC9140A1BDD006F43A3 /* CustomABPeoplePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09817AC8140A1BDD006F43A3 /* CustomABPeoplePickerController.m */; };
 		1D3623260D0F684500981E51 /* ReOrgAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ReOrgAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -124,6 +125,8 @@
 		0944E6D7140641C100544509 /* AddressSelectNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressSelectNavigationController.m; sourceTree = "<group>"; };
 		0944E8DA1406F0F000544509 /* AddressBookUICell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookUICell.h; sourceTree = "<group>"; };
 		0944E8DB1406F0F000544509 /* AddressBookUICell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookUICell.m; sourceTree = "<group>"; };
+		09817AC7140A1BDD006F43A3 /* CustomABPeoplePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomABPeoplePickerController.h; sourceTree = "<group>"; };
+		09817AC8140A1BDD006F43A3 /* CustomABPeoplePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomABPeoplePickerController.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* ReOrgAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReOrgAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* ReOrgAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReOrgAppDelegate.m; sourceTree = "<group>"; };
@@ -267,6 +270,7 @@
 		0913F8D9140446A900458763 /* AddressBook */ = {
 			isa = PBXGroup;
 			children = (
+				09817AC5140A1BBC006F43A3 /* UIKitSubClass */,
 				0944E6BD1406400900544509 /* SearchDisplayController.h */,
 				0944E6BE1406400900544509 /* SearchDisplayController.m */,
 				0913FB10140456B000458763 /* AddressBookDataSource.h */,
@@ -279,6 +283,15 @@
 				0944E8DB1406F0F000544509 /* AddressBookUICell.m */,
 			);
 			name = AddressBook;
+			sourceTree = "<group>";
+		};
+		09817AC5140A1BBC006F43A3 /* UIKitSubClass */ = {
+			isa = PBXGroup;
+			children = (
+				09817AC7140A1BDD006F43A3 /* CustomABPeoplePickerController.h */,
+				09817AC8140A1BDD006F43A3 /* CustomABPeoplePickerController.m */,
+			);
+			name = UIKitSubClass;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -432,6 +445,7 @@
 				0944E6BF1406400900544509 /* SearchDisplayController.m in Sources */,
 				0944E6D8140641C100544509 /* AddressSelectNavigationController.m in Sources */,
 				0944E8DC1406F0F000544509 /* AddressBookUICell.m in Sources */,
+				09817AC9140A1BDD006F43A3 /* CustomABPeoplePickerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

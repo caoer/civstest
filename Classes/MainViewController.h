@@ -10,8 +10,10 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 
-@interface MainViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate> {
+#import "AddressBookSelectUI.h"
 
+@interface MainViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate> {
+    AddressBookSelectUI *ui;
 }
 
 -(IBAction) loadAddressBook;

@@ -10,6 +10,7 @@
 #import "AddressBookDataSource.h"
 #import "AddressBookSelectUI.h"
 #import "AddressSelectNavigationController.h"
+#import "CustomABPeoplePickerController.h"
 
 @implementation MainViewController
 
@@ -28,7 +29,9 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
-
+- (void) viewDidLoad {
+    ui = [[AddressBookSelectUI alloc] init];
+}
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -37,8 +40,14 @@
 }
 
 -(IBAction) loadAddressBook {
-    AddressSelectNavigationController *addressUI = [AddressSelectNavigationController navigationController];
-    [self presentModalViewController:addressUI animated:YES];
+   // AddressSelectNavigationController *addressUI = [AddressSelectNavigationController navigationController];
+//    [self presentModalViewController:addressUI animated:YES];
+    CustomABPeoplePickerController *picker =
+    [[CustomABPeoplePickerController alloc] init];
+    picker.peoplePickerDelegate = self;
+    
+    [self presentModalViewController:picker animated:YES];
+    [picker release];
 }
     
 - (void)peoplePickerNavigationControllerDidCancel:
@@ -47,8 +56,7 @@
 }
 
 
-- (BOOL)peoplePickerNavigationController:
-(ABPeoplePickerNavigationController *)peoplePicker
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
       shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     
     NSString* name = (NSString *)ABRecordCopyValue(person,
@@ -61,15 +69,35 @@
     [name release];
     
 //    [self dismissModalViewControllerAnimated:YES];
-    
-    return YES;
+
+//    UIView *view = peoplePicker.topViewController.view;
+//    UITableView *tableView = nil;
+//    for(UIView *uv in view.subviews)
+//    {
+//        if([uv isKindOfClass:[UITableView class]])
+//        {
+//            tableView = (UITableView*)uv;
+//            tableView.dataSource = ui;
+//            tableView.delegate = ui;
+//            break;
+//        }
+//    }
+//    
+//    if(tableView != nil)
+//    {
+//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]];
+//        
+//        cell.accessoryType = cell.accessoryType == UITableViewCellAccessoryNone ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+//        
+//        [cell setSelected:NO animated:YES];
+//    }
+    return NO;
 }
-- (BOOL)peoplePickerNavigationController:
-(ABPeoplePickerNavigationController *)peoplePicker
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
       shouldContinueAfterSelectingPerson:(ABRecordRef)person
                                 property:(ABPropertyID)property
                               identifier:(ABMultiValueIdentifier)identifier{
-    return YES;
+    return NO;
 }
 
 @end

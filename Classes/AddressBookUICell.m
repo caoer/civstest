@@ -11,6 +11,8 @@
 
 @implementation AddressBookUICell
 
+@synthesize choosed;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -24,12 +26,18 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state.
 }
 
-
+- (void) toogle {
+    if (!choosed) {
+        choosed = YES;
+    }
+    else {
+        choosed = NO;
+    }
+}
 - (void)dealloc {
+
     [super dealloc];
 }
 

@@ -13,8 +13,9 @@
 	SearchDisplayController *searchDisplayController_;
 	UISearchBar *searchBar_;
     NSMutableArray *contactDataSource_;
-    
     NSMutableArray *sectionTitles_;
+    
+    NSMutableArray *choosedArray;
 }
 
 @property (nonatomic, retain) NSMutableArray *sectionTitles;

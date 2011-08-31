@@ -10,6 +10,10 @@
 
 
 @interface AddressBookUICell : UITableViewCell {
+    BOOL choosed;
 }
 
+@property (nonatomic, assign) BOOL choosed;
+
+- (void) toogle;
 @end
