@@ -44,7 +44,7 @@
 //    [self presentModalViewController:addressUI animated:YES];
     CustomABPeoplePickerController *picker =
     [[CustomABPeoplePickerController alloc] init];
-    picker.peoplePickerDelegate = self;
+    picker.peoplePickerDelegate = picker;
     
     [self presentModalViewController:picker animated:YES];
     [picker release];
@@ -70,27 +70,27 @@
     
 //    [self dismissModalViewControllerAnimated:YES];
 
-//    UIView *view = peoplePicker.topViewController.view;
-//    UITableView *tableView = nil;
-//    for(UIView *uv in view.subviews)
-//    {
-//        if([uv isKindOfClass:[UITableView class]])
-//        {
-//            tableView = (UITableView*)uv;
-//            tableView.dataSource = ui;
-//            tableView.delegate = ui;
-//            break;
-//        }
-//    }
-//    
-//    if(tableView != nil)
-//    {
-//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]];
-//        
-//        cell.accessoryType = cell.accessoryType == UITableViewCellAccessoryNone ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-//        
-//        [cell setSelected:NO animated:YES];
-//    }
+    UIView *view = peoplePicker.topViewController.view;
+    UITableView *tableView = nil;
+    for(UIView *uv in view.subviews)
+    {
+        if([uv isKindOfClass:[UITableView class]])
+        {
+            tableView = (UITableView*)uv;
+            tableView.dataSource = ui;
+            tableView.delegate = ui;
+            break;
+        }
+    }
+    
+    if(tableView != nil)
+    {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:[tableView indexPathForSelectedRow]];
+        
+        cell.accessoryType = cell.accessoryType == UITableViewCellAccessoryNone ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        
+        [cell setSelected:NO animated:YES];
+    }
     return NO;
 }
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker

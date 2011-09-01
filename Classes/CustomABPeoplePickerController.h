@@ -8,10 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <AddressBookUI/AddressBookUI.h>
-
-@interface CustomABPeoplePickerController : ABPeoplePickerNavigationController<UITableViewDataSource,UITableViewDelegate> {
+@interface CustomABPeoplePickerController : ABPeoplePickerNavigationController<UITableViewDataSource,UITableViewDelegate,ABPeoplePickerNavigationControllerDelegate> {
     id originalDataDelegate_;
     id originalDataSource_;
+    UITableView *personTableView_;
+    NSMutableArray *selectedIndexPathes_;
 }
 
+@property (nonatomic, retain) NSMutableArray *selectedIndexPathes;
 @end
+
+
