@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AddressBook/AddressBook.h>
+#import "Person.h"
 
 #define kFirstName @"firstName"
 #define kLastName @"lastName"
@@ -15,8 +16,10 @@
 @interface AddressBookDataSource : NSObject {
     NSArray *dataSource_;
     NSMutableArray *nameDataSource_;
+    NSMutableArray *contactDataSource_;
 }
 
+@property (nonatomic, retain) NSMutableArray *contactDataSource;
 @property (nonatomic, retain) NSMutableArray *nameDataSource;
 @property (nonatomic, retain) NSArray *dataSource;
 +(id) sharedInstance;
@@ -25,4 +28,10 @@
 -(NSString *) lastNameAtIndex:(int)index;
 -(NSString *) nameAtIndex:(int)index;
 -(int) count;
+- (NSMutableArray*) alphabetArray;
+
+-(NSArray *) arrayAtSection:(NSInteger)section;
+-(NSString *) keyAtSection:(NSInteger)section;
+
+-(Person *) personForIndexPath:(NSIndexPath*) indexPath;
 @end

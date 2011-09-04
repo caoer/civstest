@@ -52,10 +52,14 @@
     }
 	return YES;
 }
+
 -(void) searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)aTableView {
 
 }
 
+-(void) searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller {
+    [[addressBookSelectUIDelegate_ tableView] reloadData];
+}
 #pragma mark -
 #pragma mark Table View Data Source
 
@@ -93,6 +97,7 @@
     
     return cell;
 } 
+
 #pragma mark -
 #pragma mark TableViewDelegate
 

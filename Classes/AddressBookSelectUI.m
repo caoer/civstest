@@ -75,7 +75,6 @@
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
-        [self setupDataSource];
 
     }
     return self;
@@ -85,100 +84,12 @@
 
 #pragma mark -
 #pragma mark DataSource
-- (NSMutableArray*) alphabetArray {
-    NSMutableArray *alphabetArray_ = [NSMutableArray array];
-    [alphabetArray_ addObject:@"{search}"];
-    for (int i = 0; i < 26; i++) {
-        NSString *key = [[NSString stringWithFormat:@"%c", i+97] uppercaseString];
-        [alphabetArray_ addObject:key];
-    }
-    [alphabetArray_ addObject:@"#"];
-    return alphabetArray_;
-}
-- (void)setupDataSource {
-    contactDataSource_ = [[NSMutableArray array] retain];
-    
-    /**
-     *  dataSourceArray-> sectionDictionary-> SectionTitle
-     *                                     -> SectionArray -> Peoples
-     *
-     *  sectionTitles_-> sectionDictionary -> SectionTitle
-     *                                     -> 
-     *
-     **/
-    
-    for (int i = 0; i < [[self alphabetArray] count]; i++) {
-        NSMutableDictionary *contactSection = [NSMutableDictionary dictionary];
-
-        NSString *key = [[self alphabetArray] objectAtIndex:i];
-        [contactSection setObject:key forKey:kSectionTitleKey];
-        NSArray *contactArray = [self arrayStartIgnoreCaptionWith:key inArray:[[AddressBookDataSource sharedInstance] nameDataSource] byNameKey:kFirstName];
-        [contactSection setObject:contactArray forKey:kSectionValueKey];
-        
-        if ([contactArray count] != 0) {
-            [contactDataSource_ addObject:contactSection];
-        }
-    }
-    
-    NSArray *allArray = [[AddressBookDataSource sharedInstance] nameDataSource];
-    NSMutableArray *unicodeArray = [NSMutableArray array];
-    for (int i = 0; i < [allArray count]; i++) {
-        NSDictionary *nameDict = [allArray objectAtIndex:i];
-        
-        NSUInteger firstChar = [[nameDict valueForKey:kFirstName] characterAtIndex:0] ;
-        if (
-            !(
-              (firstChar> 65 && firstChar <91)
-              ||
-              (firstChar> 71 && firstChar <123)
-              )
-            )//that not in ABCDEFGHIJKLMNOPQRSTUVWXYZ
-        {
-            Person *person = [[Person alloc] init];
-            person.firstName = [nameDict valueForKey:kFirstName];
-            person.lastName = [nameDict valueForKey:kLastName];
-            [unicodeArray addObject:person];
-            [person release];
-        }
-
-    }
-    
-    [unicodeArray sortUsingDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES]]];
-    
-    [contactDataSource_ addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   unicodeArray, kSectionValueKey,
-                                   @"#", kSectionTitleKey,nil]];
+-(NSMutableArray *) contactDataSource {
+    return [[AddressBookDataSource sharedInstance] contactDataSource];
 }
 
-
-
-- (NSArray*) arrayStartIgnoreCaptionWith:(NSString*) firstLetter inArray:(NSArray*) array byNameKey:(NSString*) nameKey{
-    NSIndexSet* indexSet = [array indexesOfObjectsPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
-        NSDictionary *nameDict = (NSDictionary*) obj;
-        NSString *name = [nameDict valueForKey:nameKey];
-        if ([name hasPrefix:firstLetter] || [name hasPrefix:[firstLetter lowercaseString]]) {
-            return YES;
-        }
-        else {
-            return NO;
-        }
-    }];
-    
-    NSArray *result = [array objectsAtIndexes:indexSet];
-    NSMutableArray *resultPeople = [NSMutableArray arrayWithCapacity:[result count]];
-    
-    for (NSDictionary *nameDict in result) {
-        Person *person = [[Person alloc] init];
-        person.firstName = [nameDict valueForKey:kFirstName];
-        person.lastName = [nameDict valueForKey:kLastName];
-        [resultPeople addObject:person];
-        [person release];
-    }
-    return resultPeople;
-}
-
--(NSArray*) contactArrayAtSection:(int) section {
-    return [[self.contactDataSource objectAtIndex:section] valueForKey:kSectionValueKey];
+-(Person *) personForIndexPath:(NSIndexPath*) indexPath {
+    return [[AddressBookDataSource sharedInstance] personForIndexPath:indexPath];
 }
 
 #pragma mark -
@@ -196,8 +107,9 @@
 #pragma mark -
 #pragma mark Table view data source
 -(NSArray *) sectionIndexTitlesForTableView:(UITableView *)tableView {
-    return [self alphabetArray];
+    return [[AddressBookDataSource sharedInstance] alphabetArray];
 }
+
 -(NSInteger) tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)aTitle atIndex:(NSInteger)index {
     if ([aTitle isEqualToString:@"{search}"]) {
         [self.tableView setContentOffset:CGPointMake(0, 0)];
@@ -220,20 +132,15 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return [self.contactDataSource count];
+    return [[AddressBookDataSource sharedInstance] numberOfSections];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return  [[self contactArrayAtSection:section] count];
+    return  [[AddressBookDataSource sharedInstance] numberOfRowsInSection:section];
 }
 
--(Person *) personForIndexPath:(NSIndexPath*) indexPath {
-    NSArray *contactArray = [self contactArrayAtSection:indexPath.section];
-    Person *person = [contactArray objectAtIndex:indexPath.row];
-    return person;
-}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -266,7 +173,7 @@
 #pragma mark Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    Person *person = [[self contactArrayAtSection:indexPath.section] objectAtIndex:indexPath.row];
+    Person *person = [[AddressBookDataSource sharedInstance] personForIndexPath:indexPath];
     [person toogle];
      
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];

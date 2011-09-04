@@ -22,7 +22,5 @@
 @property (nonatomic, retain) SearchDisplayController *searchDisplayController;
 @property (nonatomic, retain) UISearchBar *searchBar;
 
-- (void)setupDataSource;
-- (NSArray*) arrayStartIgnoreCaptionWith:(NSString*) firstLetter inArray:(NSArray*) array byNameKey:(NSString*) nameKey;
 -(Person *) personForIndexPath:(NSIndexPath*) indexPath;
 @end
