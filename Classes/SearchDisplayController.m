@@ -7,6 +7,8 @@
 
 #import "SearchDisplayController.h"
 #import "NSIndexPath+UtilityExtensions.h"
+#import "AddressBookSelectUI.h"
+#import "Person.h"
 
 #define kNameKey @"name"
 #define kIndexKey @"index"
@@ -14,7 +16,6 @@
 
 @synthesize addressBookSelectUIDelegate = addressBookSelectUIDelegate_;
 @synthesize searchResultArray = searchResultArray_;
-@synthesize datasource = datasource_;
 
 
 - (void)dealloc
@@ -28,7 +29,7 @@
 
 -(id) initWithSearchBar:(UISearchBar *)searchBar contentsController:(UIViewController *)viewController {
 	if ((self = [super initWithSearchBar:searchBar contentsController:viewController])) {
-		datasource_ = [AddressBookDataSource sharedInstance];
+
 	}
 	return self;
 }
@@ -39,15 +40,14 @@
 	[searchResultArray_ release];
 	searchResultArray_ = nil;
     searchResultArray_ = [[NSMutableArray array] retain];
-    for (int i = 0; i < [[[AddressBookDataSource sharedInstance] nameDataSource] count]; i ++) {
-        NSString *name = [[AddressBookDataSource sharedInstance] nameAtIndex:i];
-        if ([name rangeOfString:searchString options:NSCaseInsensitiveSearch].location != NSNotFound
-            ) {
-            [searchResultArray_ addObject:
-             [NSDictionary dictionaryWithObjectsAndKeys:
-              name, kNameKey, 
-              [NSNumber numberWithInt:i], kIndexKey,
-              nil]];
+    for (int i = 0; i < [addressBookSelectUIDelegate_ numberOfSectionsInTableView:nil]; i ++) {
+        for (int j = 0; j < [addressBookSelectUIDelegate_ tableView:nil numberOfRowsInSection:i]; j ++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+            Person *person = [addressBookSelectUIDelegate_ personForIndexPath:indexPath];
+            NSString *name = person.fullName;
+            if ([name rangeOfString:searchString options:NSCaseInsensitiveSearch].location != NSNotFound) {
+                [searchResultArray_ addObject:person];
+            }
         }
     }
 	return YES;
@@ -77,11 +77,16 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 304, 44) reuseIdentifier:cellIdentifier] autorelease];     
     }
 	
-    NSDictionary *dic = [searchResultArray_ objectAtIndex:indexPath.row];
-    [[cell textLabel] setText:[dic valueForKey:kNameKey]];
-	[cell setAccessoryType:UITableViewCellAccessoryNone];
-	
-	
+
+    Person *person = [searchResultArray_ objectAtIndex:indexPath.row];
+    [[cell textLabel] setText:person.fullName];
+    if (person.selected) {
+        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }
+    else {
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+    }
+    
 	//    UIImage *indicatorImage = [UIImage imageNamed:@"cell_indicator.png"];
 	//    cell.accessoryView = [[[UIImageView alloc] initWithImage:indicatorImage] autorelease];
 	//    cell.selectionStyle = UITableViewCellSelectionStyleGray;
@@ -92,7 +97,9 @@
 #pragma mark TableViewDelegate
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    Person *person = [searchResultArray_ objectAtIndex:indexPath.row];
+    [person toogle];
+    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end

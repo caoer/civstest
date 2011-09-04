@@ -87,7 +87,7 @@
 }
 
 - (NSString*)nameAtIndex:(int) index {
-    return [[NSString stringWithFormat:@"%@ %@",[self firstNameAtIndex:index], [self lastNameAtIndex:index]] copy];
+    return [NSString stringWithFormat:@"%@ %@",[self firstNameAtIndex:index], [self lastNameAtIndex:index]];
 }
 
 - (int) count {

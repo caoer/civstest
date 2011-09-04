@@ -17,7 +17,6 @@
 
 @implementation AddressBookSelectUI
 
-@synthesize sectionTitles = sectionTitles_;
 @synthesize contactDataSource = contactDataSource_;
 @synthesize searchDisplayController = searchDisplayController_;
 @synthesize searchBar = searchBar_;
@@ -42,8 +41,6 @@
     [contactDataSource_ release];
 	contactDataSource_ = nil;
     
-	[sectionTitles_ release];
-	sectionTitles_ = nil;
     
 }
 
@@ -95,16 +92,12 @@
         NSString *key = [[NSString stringWithFormat:@"%c", i+97] uppercaseString];
         [alphabetArray_ addObject:key];
     }
+    [alphabetArray_ addObject:@"#"];
     return alphabetArray_;
 }
 - (void)setupDataSource {
     contactDataSource_ = [[NSMutableArray array] retain];
     
-    sectionTitles_ = [[NSMutableArray arrayWithArray:[self alphabetArray]] retain];
-    
-
-    
-    NSMutableArray *removeArray = [NSMutableArray array];
     /**
      *  dataSourceArray-> sectionDictionary-> SectionTitle
      *                                     -> SectionArray -> Peoples
@@ -113,10 +106,11 @@
      *                                     -> 
      *
      **/
-    for (int i = 0; i < [sectionTitles_ count]; i++) {
+    
+    for (int i = 0; i < [[self alphabetArray] count]; i++) {
         NSMutableDictionary *contactSection = [NSMutableDictionary dictionary];
 
-        NSString *key = [sectionTitles_ objectAtIndex:i];
+        NSString *key = [[self alphabetArray] objectAtIndex:i];
         [contactSection setObject:key forKey:kSectionTitleKey];
         NSArray *contactArray = [self arrayStartIgnoreCaptionWith:key inArray:[[AddressBookDataSource sharedInstance] nameDataSource] byNameKey:kFirstName];
         [contactSection setObject:contactArray forKey:kSectionValueKey];
@@ -124,13 +118,36 @@
         if ([contactArray count] != 0) {
             [contactDataSource_ addObject:contactSection];
         }
-        else {
-            //remove empty array
-            [removeArray addObject:key];
-        }
     }
     
-    [sectionTitles_ removeObjectsInArray:removeArray];
+    NSArray *allArray = [[AddressBookDataSource sharedInstance] nameDataSource];
+    NSMutableArray *unicodeArray = [NSMutableArray array];
+    for (int i = 0; i < [allArray count]; i++) {
+        NSDictionary *nameDict = [allArray objectAtIndex:i];
+        
+        NSUInteger firstChar = [[nameDict valueForKey:kFirstName] characterAtIndex:0] ;
+        if (
+            !(
+              (firstChar> 65 && firstChar <91)
+              ||
+              (firstChar> 71 && firstChar <123)
+              )
+            )//that not in ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        {
+            Person *person = [[Person alloc] init];
+            person.firstName = [nameDict valueForKey:kFirstName];
+            person.lastName = [nameDict valueForKey:kLastName];
+            [unicodeArray addObject:person];
+            [person release];
+        }
+
+    }
+    
+    [unicodeArray sortUsingDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES]]];
+    
+    [contactDataSource_ addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                   unicodeArray, kSectionValueKey,
+                                   @"#", kSectionTitleKey,nil]];
 }
 
 
@@ -186,21 +203,15 @@
         [self.tableView setContentOffset:CGPointMake(0, 0)];
         return -1;
     }
-    
-    int count = 0; //used for avoid error, if can't find matched Title, return last valid title index
-    TTDINFO(@":%@",aTitle);
-    while (![self.sectionTitles containsObject:aTitle]) {
-        aTitle = [NSString stringWithFormat:@"%c", [aTitle characterAtIndex:0] +1];
-        
-        count ++;
-        if (count > [[self sectionTitles] count]) {
-            //jump out the loop, Happen when use unicode name
-            DLOG(@"can't find match in sectionTitles");
-            return [self.sectionTitles count] -1;
+
+    for (int i = 0; i < [self.contactDataSource count]; i ++) {
+        NSDictionary *dic = [self.contactDataSource objectAtIndex:i];
+        NSString *key = [dic valueForKey:kSectionTitleKey];
+        if ([key isEqualToString:aTitle]) {
+            return i;
         }
     }
-    TTDINFO(@"%d:%@", [[self sectionTitles] indexOfObject:aTitle], aTitle);
-    return [[self sectionTitles] indexOfObject:aTitle];
+    return [self.contactDataSource count];
 }
 
 -(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -218,6 +229,11 @@
     return  [[self contactArrayAtSection:section] count];
 }
 
+-(Person *) personForIndexPath:(NSIndexPath*) indexPath {
+    NSArray *contactArray = [self contactArrayAtSection:indexPath.section];
+    Person *person = [contactArray objectAtIndex:indexPath.row];
+    return person;
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -231,9 +247,8 @@
         cell.textLabel.backgroundColor = [UIColor clearColor];
     }
     
-    NSArray *contactArray = [self contactArrayAtSection:indexPath.section];
-    Person *person = [contactArray objectAtIndex:indexPath.row];
-
+    Person *person = [self personForIndexPath:indexPath];
+    
     cell.textLabel.text = person.fullName;
     
     if (person.selected) {

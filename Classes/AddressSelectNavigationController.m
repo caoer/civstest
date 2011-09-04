@@ -16,12 +16,24 @@
     AddressSelectNavigationController *navController = [[[AddressSelectNavigationController alloc] initWithRootViewController:viewController] autorelease];
     [[navController navigationBar] setTintColor:globalBarTintColor()];
     
+    [viewController.navigationItem setLeftBarButtonItem:
+     [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
+                                                    target:navController
+                                                    action:@selector(cancel:)] autorelease]];
+    
     [viewController.navigationItem setRightBarButtonItem:
-     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:navController action:@selector(done:)]];
+     [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave 
+                                                    target:navController
+                                                    action:@selector(save:)] autorelease]];
     [viewController release];
     return navController;
 }
-- (void)done:(id) sender {
+
+- (void)cancel:(id) sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)save:(id) sender {
     [self dismissModalViewControllerAnimated:YES];
 }
 @end

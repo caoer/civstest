@@ -11,12 +11,11 @@
 
 @interface SearchDisplayController : UISearchDisplayController<UITableViewDelegate,UITableViewDataSource,UISearchDisplayDelegate> {
 	NSMutableArray *searchResultArray_;
-	AddressBookDataSource *datasource_;
     id addressBookSelectUIDelegate_;
 }
 
-@property (nonatomic, copy) id addressBookSelectUIDelegate;
+@property (nonatomic, assign) id addressBookSelectUIDelegate;
 @property (nonatomic, retain) NSMutableArray *searchResultArray;
-@property (nonatomic, assign) AddressBookDataSource *datasource;
+
 
 @end
