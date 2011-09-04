@@ -12,6 +12,7 @@
 #define kIndexKey @"index"
 @implementation SearchDisplayController
 
+@synthesize addressBookSelectUIDelegate = addressBookSelectUIDelegate_;
 @synthesize searchResultArray = searchResultArray_;
 @synthesize datasource = datasource_;
 
@@ -24,6 +25,7 @@
 
 	[super dealloc];
 }
+
 -(id) initWithSearchBar:(UISearchBar *)searchBar contentsController:(UIViewController *)viewController {
 	if ((self = [super initWithSearchBar:searchBar contentsController:viewController])) {
 		datasource_ = [AddressBookDataSource sharedInstance];

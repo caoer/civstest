@@ -40,14 +40,14 @@
 }
 
 -(IBAction) loadAddressBook {
-   // AddressSelectNavigationController *addressUI = [AddressSelectNavigationController navigationController];
-//    [self presentModalViewController:addressUI animated:YES];
-    CustomABPeoplePickerController *picker =
-    [[CustomABPeoplePickerController alloc] init];
-    picker.peoplePickerDelegate = picker;
-    
-    [self presentModalViewController:picker animated:YES];
-    [picker release];
+    AddressSelectNavigationController *addressUI = [AddressSelectNavigationController navigationController];
+    [self presentModalViewController:addressUI animated:YES];
+    //CustomABPeoplePickerController *picker =
+//    [[CustomABPeoplePickerController alloc] init];
+//    picker.peoplePickerDelegate = picker;
+//    
+//    [self presentModalViewController:picker animated:YES];
+//    [picker release];
 }
     
 - (void)peoplePickerNavigationControllerDidCancel:

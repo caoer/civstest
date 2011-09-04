@@ -9,6 +9,7 @@
 #import "AddressBookSelectUI.h"
 #import "AddressBookDataSource.h"
 #import "AddressBookUICell.h"
+#import "Person.h"
 
 #define kSectionTitleKey @"sectionTitle"
 #define kSectionValueKey @"sectionValue"
@@ -23,7 +24,6 @@
 
 #pragma mark -
 #pragma mark Memory management
-
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -61,7 +61,6 @@
 
 #pragma mark -
 #pragma mark Initialization
-
 -(void) setupSearchDisaplayController {
 	searchBar_ = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 304, 44)];
 	searchBar_.tintColor = globalBarTintColor();
@@ -69,7 +68,8 @@
 	searchDisplayController_.delegate = searchDisplayController_;
 	searchDisplayController_.searchResultsDataSource = searchDisplayController_;
 	searchDisplayController_.searchResultsDelegate = searchDisplayController_;
-	
+	searchDisplayController_.addressBookSelectUIDelegate = self;
+    
 	[self.tableView setTableHeaderView:searchBar_];
 	
 }
@@ -88,24 +88,36 @@
 
 #pragma mark -
 #pragma mark DataSource
-
+- (NSMutableArray*) alphabetArray {
+    NSMutableArray *alphabetArray_ = [NSMutableArray array];
+    [alphabetArray_ addObject:@"{search}"];
+    for (int i = 0; i < 26; i++) {
+        NSString *key = [[NSString stringWithFormat:@"%c", i+97] uppercaseString];
+        [alphabetArray_ addObject:key];
+    }
+    return alphabetArray_;
+}
 - (void)setupDataSource {
     contactDataSource_ = [[NSMutableArray array] retain];
     
-    sectionTitles_ = [[NSMutableArray array] retain];
+    sectionTitles_ = [[NSMutableArray arrayWithArray:[self alphabetArray]] retain];
     
-    for (int i = 0; i < 26; i++) {
-        NSString *key = [[NSString stringWithFormat:@"%c", i+97] capitalizedString];
-        [sectionTitles_ addObject:key];
-    }
+
     
     NSMutableArray *removeArray = [NSMutableArray array];
-    
+    /**
+     *  dataSourceArray-> sectionDictionary-> SectionTitle
+     *                                     -> SectionArray -> Peoples
+     *
+     *  sectionTitles_-> sectionDictionary -> SectionTitle
+     *                                     -> 
+     *
+     **/
     for (int i = 0; i < [sectionTitles_ count]; i++) {
-        NSString *key = [sectionTitles_ objectAtIndex:i];
         NSMutableDictionary *contactSection = [NSMutableDictionary dictionary];
+
+        NSString *key = [sectionTitles_ objectAtIndex:i];
         [contactSection setObject:key forKey:kSectionTitleKey];
-        
         NSArray *contactArray = [self arrayStartIgnoreCaptionWith:key inArray:[[AddressBookDataSource sharedInstance] nameDataSource] byNameKey:kFirstName];
         [contactSection setObject:contactArray forKey:kSectionValueKey];
         
@@ -113,6 +125,7 @@
             [contactDataSource_ addObject:contactSection];
         }
         else {
+            //remove empty array
             [removeArray addObject:key];
         }
     }
@@ -124,7 +137,6 @@
 
 - (NSArray*) arrayStartIgnoreCaptionWith:(NSString*) firstLetter inArray:(NSArray*) array byNameKey:(NSString*) nameKey{
     NSIndexSet* indexSet = [array indexesOfObjectsPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
-        //NSAssert1([obj isKindOfClass:[NSDictionary class]], @"%@ is not a NSDictionary", [obj class]);
         NSDictionary *nameDict = (NSDictionary*) obj;
         NSString *name = [nameDict valueForKey:nameKey];
         if ([name hasPrefix:firstLetter] || [name hasPrefix:[firstLetter lowercaseString]]) {
@@ -134,8 +146,18 @@
             return NO;
         }
     }];
+    
     NSArray *result = [array objectsAtIndexes:indexSet];
-    return result;
+    NSMutableArray *resultPeople = [NSMutableArray arrayWithCapacity:[result count]];
+    
+    for (NSDictionary *nameDict in result) {
+        Person *person = [[Person alloc] init];
+        person.firstName = [nameDict valueForKey:kFirstName];
+        person.lastName = [nameDict valueForKey:kLastName];
+        [resultPeople addObject:person];
+        [person release];
+    }
+    return resultPeople;
 }
 
 -(NSArray*) contactArrayAtSection:(int) section {
@@ -144,7 +166,6 @@
 
 #pragma mark -
 #pragma mark View lifecycle
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
@@ -153,27 +174,27 @@
     [super viewWillAppear:animated];
     [self setupSearchDisaplayController];
     [self.tableView setContentOffset:CGPointMake(0, 44)];
-    //[self.tableView setBackgroundColor:[UIColor greenColor]];
 }
 
 #pragma mark -
 #pragma mark Table view data source
 -(NSArray *) sectionIndexTitlesForTableView:(UITableView *)tableView {
-    NSMutableArray *sectionTitleArray = [NSMutableArray array];
-    for (int i = 0; i<26; i++) {
-        NSString *letter = [[NSString stringWithFormat:@"%c",i+97] capitalizedString];
-        [sectionTitleArray addObject:letter];
-    }
-    return sectionTitleArray;
+    return [self alphabetArray];
 }
 -(NSInteger) tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)aTitle atIndex:(NSInteger)index {
-    int count = 0; //used for avoid error;
+    if ([aTitle isEqualToString:@"{search}"]) {
+        [self.tableView setContentOffset:CGPointMake(0, 0)];
+        return -1;
+    }
+    
+    int count = 0; //used for avoid error, if can't find matched Title, return last valid title index
     TTDINFO(@":%@",aTitle);
     while (![self.sectionTitles containsObject:aTitle]) {
         aTitle = [NSString stringWithFormat:@"%c", [aTitle characterAtIndex:0] +1];
         
         count ++;
         if (count > [[self sectionTitles] count]) {
+            //jump out the loop, Happen when use unicode name
             DLOG(@"can't find match in sectionTitles");
             return [self.sectionTitles count] -1;
         }
@@ -211,12 +232,11 @@
     }
     
     NSArray *contactArray = [self contactArrayAtSection:indexPath.section];
-    NSDictionary *cellDict = [contactArray objectAtIndex:indexPath.row];
-    BOOL selected = [[cellDict valueForKey:kSelectedKey] boolValue];
+    Person *person = [contactArray objectAtIndex:indexPath.row];
 
-    cell.textLabel.text = [cellDict valueForKey:kFirstName];
+    cell.textLabel.text = person.fullName;
     
-    if (selected) {
+    if (person.selected) {
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
     }
     else {
@@ -229,12 +249,10 @@
 
 #pragma mark -
 #pragma mark Table view delegate
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSDictionary *choosedDict = [[self contactArrayAtSection:indexPath.section] objectAtIndex:indexPath.row];
-    BOOL selected = [[choosedDict valueForKey:kSelectedKey] boolValue];
-    [choosedDict setValue:[NSNumber numberWithBool:!selected] forKey:kSelectedKey];
+    Person *person = [[self contactArrayAtSection:indexPath.section] objectAtIndex:indexPath.row];
+    [person toogle];
      
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
