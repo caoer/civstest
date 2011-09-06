@@ -134,6 +134,11 @@
         [resultPeople addObject:person];
         [person release];
     }
+    [resultPeople sortUsingDescriptors:[NSArray arrayWithObjects:
+                                        [[[NSSortDescriptor alloc] initWithKey:kFirstName ascending:YES] autorelease],
+                                        [[[NSSortDescriptor alloc] initWithKey:kLastName ascending:YES] autorelease],
+                                        nil
+                                        ]];
     return resultPeople;
 }
 
@@ -163,6 +168,7 @@
             }
         }
         
+        //add unicode contact to # section
         NSArray *allArray = [[AddressBookDataSource sharedInstance] nameDataSource];
         NSMutableArray *unicodeArray = [NSMutableArray array];
         for (int i = 0; i < [allArray count]; i++) {
@@ -175,9 +181,9 @@
             NSUInteger firstChar = [[nameDict valueForKey:kFirstName] characterAtIndex:0] ;
             if (
                 !(
-                  (firstChar> 65 && firstChar <91)
+                  (firstChar> 64 && firstChar <91)
                   ||
-                  (firstChar> 71 && firstChar <123)
+                  (firstChar> 96 && firstChar <123)
                   )
                 )//that not in ABCDEFGHIJKLMNOPQRSTUVWXYZ
             {
@@ -190,7 +196,11 @@
             
         }
         
-        [unicodeArray sortUsingDescriptors:[NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES]]];
+        [unicodeArray sortUsingDescriptors:[NSArray arrayWithObjects:
+                                            [[[NSSortDescriptor alloc] initWithKey:kFirstName ascending:YES] autorelease],
+                                            [[[NSSortDescriptor alloc] initWithKey:kLastName ascending:YES] autorelease],
+                                            nil
+         ]];
         
         [contactDataSource_ addObject:[NSDictionary dictionaryWithObjectsAndKeys:
                                        unicodeArray, kSectionValueKey,

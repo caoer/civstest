@@ -66,10 +66,12 @@
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
+
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return [searchResultArray_ count];
 
 }
+
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60;
 }
