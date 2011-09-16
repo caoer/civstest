@@ -8,30 +8,27 @@
 
 #import "AddressSelectNavigationController.h"
 #import "AddressBookSelectUI.h"
-#import "NameTitleViewController.h"
 
 @implementation AddressSelectNavigationController
 
 + (id)navigationController {
-    //AddressBookSelectUI *viewController = [[AddressBookSelectUI alloc] init];
-    AddressSelectNavigationController *navController = [[[AddressSelectNavigationController alloc] initWithNibName:@"AddressSelectNavigationController"
-                                                                                                            bundle:nil] autorelease];
+    AddressBookSelectUI *viewController = [[AddressBookSelectUI alloc] init];
+	AddressSelectNavigationController *navController = [[[AddressSelectNavigationController alloc] initWithRootViewController:viewController] autorelease];
     
-    NameTitleViewController *nameTitleController = [[[NameTitleViewController alloc] initWithNibName:@"NameTitleViewController" bundle:nil] autorelease];
-    [navController pushViewController:nameTitleController animated:NO];
     [[navController navigationBar] setTintColor:globalBarTintColor()];
     
-    [nameTitleController.navigationItem setLeftBarButtonItem:
+    [viewController.navigationItem setLeftBarButtonItem:
      [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
                                                     target:navController
                                                     action:@selector(cancel:)] autorelease]];
     
-    [nameTitleController.navigationItem setRightBarButtonItem:
+    [viewController.navigationItem setRightBarButtonItem:
      [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave 
                                                     target:navController
                                                     action:@selector(save:)] autorelease]];
+	viewController.title = @"NAMES";
     
-    //[viewController release];
+    [viewController release];
     return navController;
 }
 

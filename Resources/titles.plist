@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+	Rank	
+	Title	
+	Abbreviations	
+	Multiple Titles?	
+	Use Abbreviation as Default
+-->
+<plist version="1.0">
+<array>
+	<array>
+ <string>1, 1</string>
+ <string>Chief Executive Officer</string>
+ <string>CEO</string>
+ <string>N</string>
+ <string>Y</string>
+</array>
+<array>
+ <string>1, 2</string>
+ <string>President</string>
+ <string>Prez</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>1, 3</string>
+ <string>Founder</string>
+ <string>Fndr</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>1, 4</string>
+ <string>Grand Poobah</string>
+ <string>G,  Poobah</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>1, 5</string>
+ <string>Head Guru</string>
+ <string>Hd Guru</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>2, 1</string>
+ <string>Executive Assistant</string>
+ <string>Exec Asst</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>2, 2</string>
+ <string>Chief Operating Officer</string>
+ <string>COO</string>
+ <string>N</string>
+ <string>Y</string>
+</array>
+<array>
+ <string>2, 3</string>
+ <string>Chief Finance Officer</string>
+ <string>CFO</string>
+ <string>N</string>
+ <string>Y</string>
+</array>
+<array>
+ <string>2, 4</string>
+ <string>Chief Information Officer</string>
+ <string>CIO</string>
+ <string>N</string>
+ <string>Y</string>
+</array>
+<array>
+ <string>2, 5</string>
+ <string>Chief Technology Officer</string>
+ <string>CTO</string>
+ <string>N</string>
+ <string>Y</string>
+</array>
+<array>
+ <string>2, 6</string>
+ <string>Chief Fun Architect </string>
+ <string>CFA</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>3, 1</string>
+ <string>Senior Executive Vice President</string>
+ <string>Sr,  Executive VP</string>
+ <string>N</string>
+ <string>Y</string>
+</array>
+<array>
+ <string>3, 2</string>
+ <string>Executive Vice President</string>
+ <string>Exec VP</string>
+ <string>Y</string>
+ <string>Y</string>
+</array>
+<array>
+ <string>3, 3</string>
+ <string>Senior Vice President</string>
+ <string>Senior VP</string>
+ <string>Y</string>
+ <string>Y</string>
+</array>
+<array>
+ <string>4, 1</string>
+ <string>Vice President, Marketing</string>
+ <string>VP, Mktg</string>
+ <string>N</string>
+ <string>Y</string>
+</array>
+<array>
+ <string>4, 2</string>
+ <string>Vice President, Production</string>
+ <string>VP, Prod</string>
+ <string>N</string>
+ <string>Y</string>
+</array>
+<array>
+ <string>4, 3</string>
+ <string>Vice President, Operations</string>
+ <string>VP, Ops</string>
+ <string>N</string>
+ <string>Y</string>
+</array>
+<array>
+ <string>4, 4</string>
+ <string>Vice President, Sales</string>
+ <string>VP, Sales</string>
+ <string>N</string>
+ <string>Y</string>
+</array>
+<array>
+ <string>5, 1</string>
+ <string>Trailblazer</string>
+ <string>Trlblzr</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+<array>
+ <string>5, 2</string>
+ <string>Ideator</string>
+ <string>Ideatr</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+<array>
+ <string>5, 3</string>
+ <string>Head Professional</string>
+ <string>H,  Prof</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>5, 4</string>
+ <string>Swami</string>
+ <string>Swami</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>5, 5</string>
+ <string>Captain</string>
+ <string>Cptn</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+<array>
+ <string>5, 6</string>
+ <string>Director</string>
+ <string>Dir</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+<array>
+ <string>5, 7</string>
+ <string>Director, Special Projects</string>
+ <string>Dir, Special Projects</string>
+ <string>N</string>
+ <string>Y</string>
+</array>
+<array>
+ <string>5, 8</string>
+ <string>Director, HR</string>
+ <string>Dir, HR</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>5, 9</string>
+ <string>Deputy Director</string>
+ <string>Dep. Dir.</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+<array>
+ <string>6, 0</string>
+ <string>Senior Kegerator Engineer</string>
+ <string>Sr Keg Eng</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>6, 1</string>
+ <string>Manager</string>
+ <string>Mgr</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+<array>
+ <string>6, 2</string>
+ <string>Financial Manager</string>
+ <string>Fin Mgr</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>6, 3</string>
+ <string>The People Person</string>
+ <string>Ppl Per</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>6, 4</string>
+ <string>Partner</string>
+ <string>Ptnr</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+<array>
+ <string>6, 5</string>
+ <string>Principal</string>
+ <string>Princ</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+<array>
+ <string>7, 1</string>
+ <string>Associate</string>
+ <string>Assoc</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+<array>
+ <string>7, 2</string>
+ <string>Junior </string>
+ <string>Jr</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+<array>
+ <string>7, 3</string>
+ <string>Business Analyst</string>
+ <string>Biz Anal</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+<array>
+ <string>7, 4</string>
+ <string>Accountant</string>
+ <string>Acct</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+<array>
+ <string>7, 5</string>
+ <string>Customer Service</string>
+ <string>Cust Svc</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>7, 6</string>
+ <string>HR Coordinator</string>
+ <string>HR Coor</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>7, 7</string>
+ <string>Media Contact</string>
+ <string>Media</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>7, 8</string>
+ <string>Database Coordinator</string>
+ <string>DB Coor</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>7, 9</string>
+ <string>Quality Assurance</string>
+ <string>QA</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>7, 1</string>
+ <string>External Liaison</string>
+ <string>Ext Liasn</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>8, 1</string>
+ <string>Administrative Assistant</string>
+ <string>Admin Asst</string>
+ <string>Y</string>
+ <string>Y</string>
+</array>
+<array>
+ <string>8, 2</string>
+ <string>Scheduler</string>
+ <string>Schd</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+<array>
+ <string>8, 3</string>
+ <string>Go-fer</string>
+ <string>Go-fer</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+<array>
+ <string>8, 4</string>
+ <string>Assistant to the Assistant Director</string>
+ <string>Asst Asst Dir</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>8, 5</string>
+ <string>Snack Bar Attendant</string>
+ <string>SB Attndt</string>
+ <string>N</string>
+ <string>N</string>
+</array>
+<array>
+ <string>8, 6</string>
+ <string>Peon</string>
+ <string>Peon</string>
+ <string>Y</string>
+ <string>N</string>
+</array>
+</array>
+</plist>

@@ -41,13 +41,9 @@
 		0913FB73140457E800458763 /* CMCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0913FB72140457E800458763 /* CMCoreData.m */; };
 		0913FB8F140459B700458763 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913FB8E140459B700458763 /* CoreData.framework */; };
 		0913FBAA14045ACA00458763 /* AddressBookSelectUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 0913FBA914045ACA00458763 /* AddressBookSelectUI.m */; };
-		0938E0711421C26E00DD6483 /* AddressSelectNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0938E0701421C26E00DD6483 /* AddressSelectNavigationController.xib */; };
-		0938E0901421C39100DD6483 /* NameTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0938E08E1421C39100DD6483 /* NameTitleViewController.m */; };
-		0938E0911421C39100DD6483 /* NameTitleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0938E08F1421C39100DD6483 /* NameTitleViewController.xib */; };
 		0944E6BF1406400900544509 /* SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0944E6BE1406400900544509 /* SearchDisplayController.m */; };
 		0944E6D8140641C100544509 /* AddressSelectNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0944E6D7140641C100544509 /* AddressSelectNavigationController.m */; };
 		0944E8DC1406F0F000544509 /* AddressBookUICell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0944E8DB1406F0F000544509 /* AddressBookUICell.m */; };
-		09817AC9140A1BDD006F43A3 /* CustomABPeoplePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09817AC8140A1BDD006F43A3 /* CustomABPeoplePickerController.m */; };
 		099DF908141194FF00ABA62B /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 099DF907141194FF00ABA62B /* Person.m */; };
 		1D3623260D0F684500981E51 /* ReOrgAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* ReOrgAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -57,6 +53,12 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		6D2851F31422D10A00D851F2 /* TitleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2851F21422D10A00D851F2 /* TitleTableViewController.m */; };
+		6D2851F61422D12900D851F2 /* TitleDataSources.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2851F51422D12900D851F2 /* TitleDataSources.m */; };
+		6D2851F91422D13900D851F2 /* Title.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2851F81422D13900D851F2 /* Title.m */; };
+		6D28521E1422D5DF00D851F2 /* titles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D28521D1422D5DF00D851F2 /* titles.plist */; };
+		6D2852AD1422E09D00D851F2 /* TitleNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2852AC1422E09D00D851F2 /* TitleNavigationController.m */; };
+		6D2853151422E46200D851F2 /* RandomizedDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2853141422E46200D851F2 /* RandomizedDataHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,18 +125,12 @@
 		0913FB8E140459B700458763 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		0913FBA814045ACA00458763 /* AddressBookSelectUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookSelectUI.h; sourceTree = "<group>"; };
 		0913FBA914045ACA00458763 /* AddressBookSelectUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookSelectUI.m; sourceTree = "<group>"; };
-		0938E0701421C26E00DD6483 /* AddressSelectNavigationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressSelectNavigationController.xib; sourceTree = "<group>"; };
-		0938E08D1421C39100DD6483 /* NameTitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameTitleViewController.h; sourceTree = "<group>"; };
-		0938E08E1421C39100DD6483 /* NameTitleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameTitleViewController.m; sourceTree = "<group>"; };
-		0938E08F1421C39100DD6483 /* NameTitleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NameTitleViewController.xib; sourceTree = "<group>"; };
 		0944E6BD1406400900544509 /* SearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDisplayController.h; sourceTree = "<group>"; };
 		0944E6BE1406400900544509 /* SearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDisplayController.m; sourceTree = "<group>"; };
 		0944E6D6140641C100544509 /* AddressSelectNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressSelectNavigationController.h; sourceTree = "<group>"; };
 		0944E6D7140641C100544509 /* AddressSelectNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressSelectNavigationController.m; sourceTree = "<group>"; };
 		0944E8DA1406F0F000544509 /* AddressBookUICell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookUICell.h; sourceTree = "<group>"; };
 		0944E8DB1406F0F000544509 /* AddressBookUICell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookUICell.m; sourceTree = "<group>"; };
-		09817AC7140A1BDD006F43A3 /* CustomABPeoplePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomABPeoplePickerController.h; sourceTree = "<group>"; };
-		09817AC8140A1BDD006F43A3 /* CustomABPeoplePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomABPeoplePickerController.m; sourceTree = "<group>"; };
 		099DF906141194FF00ABA62B /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		099DF907141194FF00ABA62B /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -149,6 +145,17 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6D2851F11422D10A00D851F2 /* TitleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleTableViewController.h; sourceTree = "<group>"; };
+		6D2851F21422D10A00D851F2 /* TitleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleTableViewController.m; sourceTree = "<group>"; };
+		6D2851F41422D12900D851F2 /* TitleDataSources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleDataSources.h; sourceTree = "<group>"; };
+		6D2851F51422D12900D851F2 /* TitleDataSources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleDataSources.m; sourceTree = "<group>"; };
+		6D2851F71422D13900D851F2 /* Title.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Title.h; sourceTree = "<group>"; };
+		6D2851F81422D13900D851F2 /* Title.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Title.m; sourceTree = "<group>"; };
+		6D28521D1422D5DF00D851F2 /* titles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = titles.plist; path = Resources/titles.plist; sourceTree = "<group>"; };
+		6D2852AB1422E09D00D851F2 /* TitleNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleNavigationController.h; sourceTree = "<group>"; };
+		6D2852AC1422E09D00D851F2 /* TitleNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleNavigationController.m; sourceTree = "<group>"; };
+		6D2853131422E46200D851F2 /* RandomizedDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomizedDataHelper.h; sourceTree = "<group>"; };
+		6D2853141422E46200D851F2 /* RandomizedDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomizedDataHelper.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ReOrg-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ReOrg-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,8 +183,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				0913F8D9140446A900458763 /* AddressBook */,
+				6D2851DD1422C82400D851F2 /* Choose */,
 				0913F7361404426400458763 /* Helper */,
+				6D2853131422E46200D851F2 /* RandomizedDataHelper.h */,
+				6D2853141422E46200D851F2 /* RandomizedDataHelper.m */,
 				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
 				28C286E00D94DF7D0034E888 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* ReOrgAppDelegate.h */,
@@ -280,34 +289,20 @@
 		0913F8D9140446A900458763 /* AddressBook */ = {
 			isa = PBXGroup;
 			children = (
-				09817AC5140A1BBC006F43A3 /* UIKitSubClass */,
+				099DF906141194FF00ABA62B /* Person.h */,
+				099DF907141194FF00ABA62B /* Person.m */,
 				0944E6BD1406400900544509 /* SearchDisplayController.h */,
 				0944E6BE1406400900544509 /* SearchDisplayController.m */,
 				0913FB10140456B000458763 /* AddressBookDataSource.h */,
 				0913FB11140456B000458763 /* AddressBookDataSource.m */,
+				0944E8DA1406F0F000544509 /* AddressBookUICell.h */,
+				0944E8DB1406F0F000544509 /* AddressBookUICell.m */,
 				0913FBA814045ACA00458763 /* AddressBookSelectUI.h */,
 				0913FBA914045ACA00458763 /* AddressBookSelectUI.m */,
 				0944E6D6140641C100544509 /* AddressSelectNavigationController.h */,
 				0944E6D7140641C100544509 /* AddressSelectNavigationController.m */,
-				0938E0701421C26E00DD6483 /* AddressSelectNavigationController.xib */,
-				0944E8DA1406F0F000544509 /* AddressBookUICell.h */,
-				0944E8DB1406F0F000544509 /* AddressBookUICell.m */,
-				099DF906141194FF00ABA62B /* Person.h */,
-				099DF907141194FF00ABA62B /* Person.m */,
-				0938E08D1421C39100DD6483 /* NameTitleViewController.h */,
-				0938E08E1421C39100DD6483 /* NameTitleViewController.m */,
-				0938E08F1421C39100DD6483 /* NameTitleViewController.xib */,
 			);
 			name = AddressBook;
-			sourceTree = "<group>";
-		};
-		09817AC5140A1BBC006F43A3 /* UIKitSubClass */ = {
-			isa = PBXGroup;
-			children = (
-				09817AC7140A1BDD006F43A3 /* CustomABPeoplePickerController.h */,
-				09817AC8140A1BDD006F43A3 /* CustomABPeoplePickerController.m */,
-			);
-			name = UIKitSubClass;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -346,6 +341,7 @@
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* ReOrg-Info.plist */,
+				6D28521D1422D5DF00D851F2 /* titles.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -364,6 +360,30 @@
 				0913F7CF1404445400458763 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6D2851DD1422C82400D851F2 /* Choose */ = {
+			isa = PBXGroup;
+			children = (
+				6D2851F01422D0E400D851F2 /* Titles */,
+				0913F8D9140446A900458763 /* AddressBook */,
+			);
+			name = Choose;
+			sourceTree = "<group>";
+		};
+		6D2851F01422D0E400D851F2 /* Titles */ = {
+			isa = PBXGroup;
+			children = (
+				6D2852AB1422E09D00D851F2 /* TitleNavigationController.h */,
+				6D2852AC1422E09D00D851F2 /* TitleNavigationController.m */,
+				6D2851F11422D10A00D851F2 /* TitleTableViewController.h */,
+				6D2851F21422D10A00D851F2 /* TitleTableViewController.m */,
+				6D2851F41422D12900D851F2 /* TitleDataSources.h */,
+				6D2851F51422D12900D851F2 /* TitleDataSources.m */,
+				6D2851F71422D13900D851F2 /* Title.h */,
+				6D2851F81422D13900D851F2 /* Title.m */,
+			);
+			name = Titles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,8 +439,7 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
 				0913F95D140447B100458763 /* MainViewController.xib in Resources */,
-				0938E0711421C26E00DD6483 /* AddressSelectNavigationController.xib in Resources */,
-				0938E0911421C39100DD6483 /* NameTitleViewController.xib in Resources */,
+				6D28521E1422D5DF00D851F2 /* titles.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,9 +482,12 @@
 				0944E6BF1406400900544509 /* SearchDisplayController.m in Sources */,
 				0944E6D8140641C100544509 /* AddressSelectNavigationController.m in Sources */,
 				0944E8DC1406F0F000544509 /* AddressBookUICell.m in Sources */,
-				09817AC9140A1BDD006F43A3 /* CustomABPeoplePickerController.m in Sources */,
 				099DF908141194FF00ABA62B /* Person.m in Sources */,
-				0938E0901421C39100DD6483 /* NameTitleViewController.m in Sources */,
+				6D2851F31422D10A00D851F2 /* TitleTableViewController.m in Sources */,
+				6D2851F61422D12900D851F2 /* TitleDataSources.m in Sources */,
+				6D2851F91422D13900D851F2 /* Title.m in Sources */,
+				6D2852AD1422E09D00D851F2 /* TitleNavigationController.m in Sources */,
+				6D2853151422E46200D851F2 /* RandomizedDataHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

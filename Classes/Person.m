@@ -7,10 +7,11 @@
 //
 
 #import "Person.h"
-
+#import "Title.h"
 
 @implementation Person
 
+@synthesize title = title_;
 @synthesize firstName = firstName_;
 @synthesize lastName = lastName_;
 @synthesize fullName;
@@ -22,6 +23,9 @@
 	firstName_ = nil;
 	[lastName_ release];
 	lastName_ = nil;
+
+	[title_ release];
+	title_ = nil;
 
 	[super dealloc];
 }

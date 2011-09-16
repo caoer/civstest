@@ -32,6 +32,7 @@
 
 	[super dealloc];
 }
+
 + (id)sharedInstance
 {
 	static id master = nil;

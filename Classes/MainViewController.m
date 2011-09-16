@@ -10,7 +10,8 @@
 #import "AddressBookDataSource.h"
 #import "AddressBookSelectUI.h"
 #import "AddressSelectNavigationController.h"
-#import "CustomABPeoplePickerController.h"
+#import "TitleNavigationController.h"
+
 
 @implementation MainViewController
 
@@ -40,14 +41,16 @@
 }
 
 -(IBAction) loadAddressBook {
-    AddressSelectNavigationController *addressUI = [AddressSelectNavigationController navigationController];
-    [self presentModalViewController:addressUI animated:YES];
-    //CustomABPeoplePickerController *picker =
-//    [[CustomABPeoplePickerController alloc] init];
-//    picker.peoplePickerDelegate = picker;
-//    
-//    [self presentModalViewController:picker animated:YES];
-//    [picker release];
+	UITabBarController *tablController = [[[UITabBarController alloc] init] autorelease];
+	
+	UIViewController *nameController = [AddressSelectNavigationController navigationController];
+	UIViewController *titleConteroller = [TitleNavigationController navigationController];
+	
+	NSArray *viewControllers = [NSArray arrayWithObjects:nameController,titleConteroller,nil];
+	
+	tablController.viewControllers = viewControllers;
+    [self presentModalViewController:tablController animated:YES];
+	
 }
     
 - (void)peoplePickerNavigationControllerDidCancel:

@@ -29,6 +29,7 @@
 	}
 	for (int i = 0; i < [compoents count]; i++) {
 		NSString *stringNumber = [compoents objectAtIndex:i];
+		stringNumber = [stringNumber stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 		indexPath = [indexPath indexPathByAddingIndex:[stringNumber intValue]];
 	}
 	return indexPath;

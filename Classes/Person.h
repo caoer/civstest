@@ -8,13 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-
+@class Title;
 @interface Person : NSObject {
     NSString *firstName_;
     NSString *lastName_;
     BOOL selected;
+
+	Title *title_;
 }
 
+@property (nonatomic, copy) Title *title;
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *lastName;
 @property (nonatomic, assign) BOOL selected;

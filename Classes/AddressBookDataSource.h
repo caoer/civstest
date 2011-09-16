@@ -28,10 +28,10 @@
 -(NSString *) lastNameAtIndex:(int)index;
 -(NSString *) nameAtIndex:(int)index;
 -(int) count;
-- (NSMutableArray*) alphabetArray;
+- (NSMutableArray*) alphabetArray;							//alphabetArrayWith # and {search}
 
--(NSArray *) arrayAtSection:(NSInteger)section;
--(NSString *) keyAtSection:(NSInteger)section;
+-(NSArray *) arrayAtSection:(NSInteger)section;				//section data
+-(NSString *) keyAtSection:(NSInteger)section;				//section name
 
--(Person *) personForIndexPath:(NSIndexPath*) indexPath;
+-(Person *) personForIndexPath:(NSIndexPath*) indexPath;	
 @end
